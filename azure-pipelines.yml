@@ -59,9 +59,11 @@ stages:
     - task: Docker@1
       inputs:
       pollingTimeoutSec: '300'    
-- task: SonarQubePublish@4
+- task: SonarQubePrepare@4
   inputs:
-    pollingTimeoutSec: '300'
+    SonarQube: 'sonarqube'
+    scannerMode: 'MSBuild'
+    projectKey: 'sonar.projectKey'
      
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
