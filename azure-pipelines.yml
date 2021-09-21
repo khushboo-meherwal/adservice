@@ -1,4 +1,10 @@
 # Docker
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarqube'
+    scannerMode: 'MSBuild'
+    projectKey: 'sonar.projectKey'
+    projectName: 'adservice'
 
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
