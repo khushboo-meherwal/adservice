@@ -32,6 +32,36 @@ stages:
         includeLatestTag: true
         useDefaultContext: false
         buildContext: '.'
+        addBaseImageData: 
+        addDefaultLabels: 
+    - task: Docker@1
+      inputs:
+      SonarQube: '<sonarqube connection from dropdown>'
+      scannerMode: 'MSBuild'
+      projectKey: '<your project key>'
+      projectName: '<your project name>'
+      projectVersion: '<optional>'
+    - task: MSBuild@1
+      inputs:
+      solution: '<.sln/.csproj file that you want to build>'
+    - task: VSTest@2
+      inputs:
+        testSelector: 'testAssemblies'
+        testAssemblyVer2: |
+          **\*test*.dll
+          !**\*TestAdapter.dll
+          !**\obj\**
+        searchFolder: '$(System.DefaultWorkingDirectory)'
+        codeCoverageEnabled: true
+     
+    - task: SonarQubeAnalyze@4
+    
+    - task: Docker@1
+      inputs:
+      pollingTimeoutSec: '300'    
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
      
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
