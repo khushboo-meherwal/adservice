@@ -34,9 +34,7 @@ stages:
         buildContext: '.'
         addBaseImageData: 
         addDefaultLabels: 
-    - task: SonarQubePublish@4
-      inputs:
-        pollingTimeoutSec: '300'
+  
      
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
