@@ -1,4 +1,5 @@
 # Docker
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -35,7 +36,9 @@ stages:
         addBaseImageData: 
         addDefaultLabels: 
   
-     
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300' 
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
       inputs:
