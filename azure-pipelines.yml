@@ -17,9 +17,9 @@ variables:
   ImageName: '173129/adservice:$(Build.BuildId)'
  
 stages:
-- stage: sonar
+- stage: Sonar
   jobs:
-  - job: Prepare sonar
+  - job: Sonar
     steps:
     - task: SonarQubePrepare@4
       inputs:
