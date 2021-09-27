@@ -29,6 +29,9 @@ stages:
         cliProjectKey: 'adservice'
         cliProjectName: 'adservice'
         cliSources: 'src/main'
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300'
 
       
 - stage: Build
