@@ -1,6 +1,7 @@
 # Docker
 
 
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -32,6 +33,7 @@ stages:
     - task: SonarQubePublish@4
       inputs:
         pollingTimeoutSec: '300'
+    - task: SonarQubeAnalyze@4
 
       
 - stage: Build
