@@ -34,15 +34,7 @@ stages:
         buildContext: '.'
         addBaseImageData: 
         addDefaultLabels: 
-    - task: SonarQubePrepare@4
-      inputs:
-        SonarQube: 'sonarqube'
-        scannerMode: 'MSBuild'
-        projectKey: 'sonar.projectKey'
-        projectName: 'adservice'
-    - task: SonarQubePublish@4
-      inputs:
-        pollingTimeoutSec: '300' 
+
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
       inputs:
