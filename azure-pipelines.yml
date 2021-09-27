@@ -31,6 +31,7 @@ stages:
         cliProjectName: 'adservice'
         cliSources: 'src/main'
     - task: SonarQubeAnalyze@4
+      displayName: 'Run Code Analysis'
 
     - task: SonarQubePublish@4
       inputs:
