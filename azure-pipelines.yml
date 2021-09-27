@@ -1,5 +1,6 @@
 # Docker
 
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -16,6 +17,20 @@ variables:
   ImageName: '173129/adservice:$(Build.BuildId)'
  
 stages:
+- stage: sonar
+  jobs:
+  - job: Prepare sonar
+    steps:
+    - task: SonarQubePrepare@4
+      inputs:
+        SonarQube: 'sonarqube'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'adservice'
+        cliProjectName: 'adservice'
+        cliSources: 'src/main'
+
+      
 - stage: Build
   displayName: Build image
   jobs:  
