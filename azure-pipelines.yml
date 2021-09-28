@@ -92,4 +92,3 @@ stages:
         releaseName: 'adservice'
         overrideValues: 'val1'
         valueFile: 'helm install --values=myvals.yaml'
-        recreate: true
