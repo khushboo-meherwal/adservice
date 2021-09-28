@@ -82,13 +82,16 @@ stages:
   
     - task: HelmDeploy@0
       inputs:
+        command: 'package'
+        chartPath: 'chart path'
+        chartVersion: 'Build.BuildNumber'
+        
+    - task: HelmDeploy@0
+      inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'kubernetes'
         namespace: 'default'
         command: 'upgrade'
         chartType: 'FilePath'
-        chartPath: 'chart package'
-        chartVersion: 'latest'
-        releaseName: 'adservice'
-        overrideValues: 'val1'
-        valueFile: 'helm install --values=myvals.yaml'
+        chartPath: 'ChartPackage'
+        releaseName: 'khushboo'
