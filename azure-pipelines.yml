@@ -79,9 +79,17 @@ stages:
       inputs:
         helmVersion: '2.14.1'
         installKubectl: true
+  
     - task: HelmDeploy@0
       inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'kubernetes'
         namespace: 'default'
-        command: 'expose'
+        command: 'upgrade'
+        chartType: 'FilePath'
+        chartPath: 'chart package'
+        chartVersion: 'latest'
+        releaseName: 'adservice'
+        overrideValues: 'val1'
+        valueFile: 'helm install --values=myvals.yaml'
+        recreate: true
