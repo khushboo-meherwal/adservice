@@ -9,7 +9,8 @@ name : Docker-CI
 trigger:
   branches:
     include:
-      - main
+      - master
+
  
 pool:
   vmImage: 'ubuntu-latest'
@@ -63,7 +64,15 @@ stages:
       displayName: 'Push the Docker image to Dockerhub'
       inputs:
         containerregistrytype: 'Container Registry'
+
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Push an image'
         imageName: '$(ImageName)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    - task: HelmDeploy@0
+      inputs:
+       connectionType: 'Kubernetes Service Connection'
+       kubernetesServiceConnection: 'dagile-khushboo'
+       namespace: '173129'
+       command: 'expose'
+       arguments: 'helm list'
