@@ -1,6 +1,7 @@
 # Docker
 
 
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -81,3 +82,9 @@ stages:
       inputs:
         helmVersion: '2.14.1'
         installKubectl: true
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceConnection: 'kubernetes'
+        namespace: 'default'
+        command: 'ls'
