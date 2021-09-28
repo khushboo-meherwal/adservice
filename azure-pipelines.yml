@@ -83,8 +83,14 @@ stages:
         installKubectl: true
     
     - task: HelmDeploy@0
+      displayName: 'helm package'
       inputs:
-        connectionType: 'Kubernetes Service Connection'
-        kubernetesServiceConnection: 'dagile-khushboo'
-        namespace: 'default'
-        command: 'ls'
+        azureSubscriptionEndpoint: $(AzureSubscription)
+        azureResourceGroup: $(ClusterResourceGroup)
+        kubernetesCluster: $(KubernetesCluster)
+        command: 'package'
+        chartPath: $(ChartPath)
+        chartVersion: $(Build.BuildNumber)
+        save: false
+        namespace: '$(K8sNamespace)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest')) 
