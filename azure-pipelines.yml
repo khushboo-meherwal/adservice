@@ -83,8 +83,9 @@ stages:
         helmVersion: '2.14.1'
         installKubectl: true
     - task: HelmDeploy@0
+
       inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'kubernetes'
         namespace: 'default'
-        command: 'ls'
+        command: 'create'
