@@ -1,7 +1,6 @@
 # Docker
 
 
-
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -79,17 +78,10 @@ stages:
     
     - task: PublishTestResults@2
       inputs:
-        testResultsFormat: 'VSTest'
-        testResultsFiles: '**/*.trx'
-        searchFolder: '$(System.DefaultWorkingDirectory)/testresults'
-      displayName: 'Publish test results'
-
-    - task: PublishCodeCoverageResults@1
-      inputs:
-        codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/testresults/coverage/coverage.cobertura.xml'
-        reportDirectory: '$(System.DefaultWorkingDirectory)/testresults/coverage/reports'
-      displayName: 'Publish code coverage results'
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TEST-*.xml'
+        mergeTestResults: true
+        testRunTitle: 'adservice'
     - task: HelmInstaller@0
       inputs:
         helmVersion: '2.14.1'
