@@ -78,5 +78,5 @@ stages:
       inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'dagile-khushboo'
-        namespace: 'k8'
+        namespace: 'default'
         command: 'ls'
