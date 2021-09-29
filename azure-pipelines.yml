@@ -30,17 +30,7 @@ stages:
         cliProjectKey: 'adservice'
         cliProjectName: 'adservice'
         cliSources: 'src/main'
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: true
-        sqMavenPluginVersionChoice: 'latest'
+ 
     
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube Scan'
