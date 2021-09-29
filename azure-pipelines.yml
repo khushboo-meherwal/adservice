@@ -21,18 +21,6 @@ stages:
   jobs:
   - job: Sonar
     steps:
-    - task: Gradle@2
-      inputs:
-        gradleWrapperFile: 'gradlew'
-        workingDirectory: 'root'
-        tasks: 'build'
-        publishJUnitResults: true
-        testResultsFiles: '**/TEST-*.xml'
-        codeCoverageToolOption: 'JaCoCo'
-        codeCoverageClassFilesDirectories: 'build/classes/main/'
-        javaHomeOption: 'JDKVersion'
-        sonarQubeRunAnalysis: false
-        spotBugsAnalysis: false
      
     - task: SonarQubePrepare@4
       inputs:
@@ -42,8 +30,8 @@ stages:
         cliProjectKey: 'adservice'
         cliProjectName: 'adservice'
         cliSources: 'src/main'
-    - task: SonarQubeAnalyze@4
-      displayName: 'Run SonarQube Scan'
+    #- task: SonarQubeAnalyze@4
+    #  displayName: 'Run SonarQube Scan'
 
     - task: SonarQubePublish@4
       inputs:
