@@ -28,7 +28,7 @@ stages:
         tasks: 'build'
         publishJUnitResults: false
         javaHomeOption: 'JDKVersion'
-        jdkVersionOption: 'default'
+        jdkVersionOption: '1.11'
         gradleOptions: '-Xmx3072m'
         sonarQubeRunAnalysis: false
     - task: SonarQubePrepare@4
