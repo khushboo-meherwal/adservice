@@ -25,12 +25,8 @@ stages:
      
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: 'sonarqube'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'adservice'
-        cliProjectName: 'adservice'
-        cliSources: 'src/main'
+       SonarQube: 'sonarqube'
+       scannerMode: 'Other'
  
     
     - task: SonarQubeAnalyze@4
