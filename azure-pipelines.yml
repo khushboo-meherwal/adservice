@@ -22,15 +22,6 @@ stages:
   - job: Sonar
     steps:
      
-    - task: Gradle@2
-      inputs:
-        gradleWrapperFile: 'gradlew'
-        tasks: 'build'
-        publishJUnitResults: false
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.11'
-        gradleOptions: '-Xmx3072m'
-        sonarQubeRunAnalysis: false
     - task: SonarQubePrepare@4
       inputs:
         SonarQube: 'sonarqube'
