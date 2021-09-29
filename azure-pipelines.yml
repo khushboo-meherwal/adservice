@@ -87,10 +87,12 @@ stages:
         chartPath: 'chart path'
         chartVersion: 'Build.BuildNumber'
         
+  
     - task: HelmDeploy@0
       inputs:
-        connectionType: 'Kubernetes Service Connection'
-        kubernetesServiceConnection: 'kubernetes'
-        command: 'upgrade'
-        chartType: 'FilePath'
-        chartPath: 'default'
+            connectionType: 'Kubernetes Service Connection'
+            kubernetesServiceConnection: 'kubernetes'
+            namespace: 'khushboo'
+            command: 'upgrade'
+            chartType: 'Name'
+            chartName: 'default'
