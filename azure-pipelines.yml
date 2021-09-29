@@ -1,4 +1,4 @@
-# Docker
+r# Docker
 
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
@@ -26,15 +26,11 @@ stages:
       inputs:
         gradleWrapperFile: 'gradlew'
         tasks: 'build'
-        publishJUnitResults: true
-        testResultsFiles: '**/TEST-*.xml'
+        publishJUnitResults: false
         javaHomeOption: 'JDKVersion'
-        sonarQubeRunAnalysis: true
-        sqGradlePluginVersionChoice: 'specify'
-        sonarQubeGradlePluginVersion: '2.6.1'
-        spotBugsAnalysis: true
-        spotBugsGradlePluginVersionChoice: 'specify'
-        spotbugsGradlePluginVersion: '4.7.0'
+        jdkVersionOption: '1.8'
+        gradleOptions: '-Xmx3072m'
+        sonarQubeRunAnalysis: false
     - task: SonarQubePrepare@4
       inputs:
         SonarQube: 'sonarqube'
