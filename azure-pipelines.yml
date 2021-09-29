@@ -67,7 +67,19 @@ stages:
         command: 'Push an image'
         imageName: '$(ImageName)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-    
+    - task: KubectlInstaller@0
+      inputs:
+        kubectlVersion: 'latest'
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceEndpoint: 'kubernetes'
+        namespace: 'khushboo'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: 'adservice.yaml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
  
     
     - task: PublishTestResults@2
@@ -76,23 +88,3 @@ stages:
         testResultsFiles: '**/TEST-*.xml'
         mergeTestResults: true
         testRunTitle: 'adservice'
-    - task: HelmInstaller@0
-      inputs:
-        helmVersion: '2.14.1'
-        installKubectl: true
-  
-    - task: HelmDeploy@0
-      inputs:
-        command: 'package'
-        chartPath: 'ChartPath'
-        chartVersion: 'Build.BuildNumber'
-    - task: HelmDeploy@0
-      inputs:
-        connectionType: 'Kubernetes Service Connection'
-        kubernetesServiceConnection: 'kubernetes'
-        namespace: 'khushboo'
-        command: 'upgrade'
-        chartType: 'FilePath'
-        chartPath: 'ChartPackage'
-        releaseName: 'adservice'
-        arguments: '--create-namespace'
