@@ -84,15 +84,15 @@ stages:
     - task: HelmDeploy@0
       inputs:
         command: 'package'
-        chartPath: 'chart path'
+        chartPath: 'ChartPath'
         chartVersion: 'Build.BuildNumber'
-        
-  
     - task: HelmDeploy@0
       inputs:
-            connectionType: 'Kubernetes Service Connection'
-            kubernetesServiceConnection: 'kubernetes'
-            namespace: 'khushboo'
-            command: 'upgrade'
-            chartType: 'Name'
-            chartName: 'default'
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceConnection: 'kubernetes'
+        namespace: 'khushboo'
+        command: 'upgrade'
+        chartType: 'FilePath'
+        chartPath: 'ChartPackage'
+        releaseName: 'adservice'
+        arguments: '--create-namespace'
