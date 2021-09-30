@@ -71,6 +71,13 @@ stages:
         command: 'Push an image'
         imageName: '$(ImageName)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+
+- stage: Deploy
+  displayName: Deploy
+  jobs:  
+  - job: Deploy
+    displayName: Deploy
+    steps:
     - task: KubectlInstaller@0
       inputs:
         kubectlVersion: 'latest'
